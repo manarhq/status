@@ -3,19 +3,19 @@ repo: status
 
 sites:
   - name: Website
-    url: https://manar.vax.sh/en
+    url: https://manar.fixio.ae/en
     expectedStatusCodes:
       - 200
   - name: Console
-    url: https://console-manar.vax.sh/en/login
+    url: https://console-manar.fixio.ae/en/login
     expectedStatusCodes:
       - 200
   - name: Sign-in
-    url: https://auth-manar.vax.sh/realms/manar/.well-known/openid-configuration
+    url: https://auth-manar.fixio.ae/realms/manar/.well-known/openid-configuration
     expectedStatusCodes:
       - 200
   - name: API (via console)
-    url: https://console-manar.vax.sh/billing/stripe/webhook
+    url: https://console-manar.fixio.ae/billing/stripe/webhook
     method: POST
     headers:
       - "Content-Type: application/json"
@@ -23,7 +23,7 @@ sites:
     expectedStatusCodes:
       - 400
   - name: MCP
-    url: https://mcp-manar.vax.sh/mcp/x/y
+    url: https://mcp-manar.fixio.ae/mcp/x/y
     method: POST
     headers:
       - "Content-Type: application/json"
@@ -31,14 +31,14 @@ sites:
     expectedStatusCodes:
       - 401
   - name: Device installer
-    url: https://console-manar.vax.sh/i/uninstall.sh
+    url: https://console-manar.fixio.ae/i/uninstall.sh
     expectedStatusCodes:
       - 200
 
 status-website:
   cname: status-manar.fixio.ae
-  logoUrl: https://raw.githubusercontent.com/manarhq/status/master/assets/manar-icon.png
-  favicon: https://raw.githubusercontent.com/manarhq/status/master/assets/manar-favicon.ico
+  logoUrl: https://manar.fixio.ae/brand/manar-lighthouse.png
+  favicon: https://manar.fixio.ae/favicon.ico
   name: Manar status
   introTitle: "**Manar** service status"
   introMessage: Live status of Manar services, checked every 5 minutes.
@@ -46,4 +46,4 @@ status-website:
     - title: Status
       href: /
     - title: Manar
-      href: https://manar.vax.sh
+      href: https://manar.fixio.ae
