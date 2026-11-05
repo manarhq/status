@@ -4,18 +4,26 @@ repo: status
 sites:
   - name: Website
     url: https://manar.fixio.ae/en
+    maxResponseTime: 3000
+    showAverageResponseTime: true
     expectedStatusCodes:
       - 200
   - name: Console
     url: https://console-manar.fixio.ae/en/login
+    maxResponseTime: 3000
+    showAverageResponseTime: true
     expectedStatusCodes:
       - 200
   - name: Sign-in
     url: https://auth-manar.fixio.ae/realms/manar/.well-known/openid-configuration
+    maxResponseTime: 3000
+    showAverageResponseTime: true
     expectedStatusCodes:
       - 200
   - name: API (via console)
     url: https://console-manar.fixio.ae/billing/stripe/webhook
+    maxResponseTime: 3000
+    showAverageResponseTime: true
     method: POST
     headers:
       - "Content-Type: application/json"
@@ -24,6 +32,8 @@ sites:
       - 400
   - name: MCP
     url: https://mcp-manar.fixio.ae/mcp/x/y
+    maxResponseTime: 3000
+    showAverageResponseTime: true
     method: POST
     headers:
       - "Content-Type: application/json"
@@ -32,8 +42,19 @@ sites:
       - 401
   - name: Device installer
     url: https://console-manar.fixio.ae/i/uninstall.sh
+    maxResponseTime: 3000
+    showAverageResponseTime: true
     expectedStatusCodes:
       - 200
+
+# Response time (decision 33): every check records its time (history/<site>.yml), the summary computes the day, week,
+# month and year averages, and the status page shows the average and a graph per site. An answer slower than
+# maxResponseTime (3 s) counts as degraded. The summary (what the page reads) runs every 30 minutes instead of once a
+# day, and the graphs every 6 hours, so the numbers on the page are never a day old.
+workflowSchedule:
+  summary: "*/30 * * * *"
+  graphs: "15 */6 * * *"
+  responseTime: "0 */6 * * *"
 
 status-website:
   cname: status-manar.fixio.ae
